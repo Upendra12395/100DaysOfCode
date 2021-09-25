@@ -4,16 +4,14 @@ For example, the longest palidromic of "aabcdcb" is "bcdcb". The longest palidro
 substring of "bananas" is "anana"*/
 
 const findPalidromicSubstring = (string) =>{
-    let finalString = "", start = 1, str1;
-    for (let i =0; i<string.length;i++){
-        str1 = string.substring(start,i);
-    
-        console.log(str1)
-        if(str1.length > 2){
-            let x = checkPalindrome(str1);
+    let finalString = "";
+    var array = getAllSubstrings(string);
+    for(let i=0;i<array.length;i++){
+        if(array[i].length > 2){
+            let x = checkPalindrome(array[i]);
             if(x){
-                if(finalString.length < str1.length){
-                    finalString = str1;
+                if(finalString.length < array[i].length){
+                    finalString = array[i];
                 }
             }
         }
@@ -33,4 +31,15 @@ function checkPalindrome(string1){
     }
 }
 
-findPalidromicSubstring("bananas")
+function getAllSubstrings(str) {
+    var i, j, result = [];
+  
+    for (i = 0; i < str.length; i++) {
+        for (j = i + 1; j < str.length + 1; j++) {
+            result.push(str.slice(i, j));
+        }
+    }
+    return result;
+  }
+
+findPalidromicSubstring("aabcdcb")
